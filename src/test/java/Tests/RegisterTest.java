@@ -1,5 +1,6 @@
 package Tests;
 
+import Base.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -11,17 +12,12 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class RegisterTest {
+public class RegisterTest extends BaseTest {
 
-    public WebDriver Driver;
+
 
     @Test
     public void registerTest(){
-        System.setProperty("webdriver.chrome.driver","C:\\Automation\\chromedriver.exe");
-        Driver=new ChromeDriver();
-        Driver.get("http://demo.automationtesting.in/Index.html");
-        Driver.manage().window().maximize();
-
         WebElement skipSignIn= Driver.findElement(By.id("btn2"));
         skipSignIn.click();
 
@@ -76,6 +72,10 @@ public class RegisterTest {
         }
 
         genderElement.click();
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package Tests;
 
+import Base.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -7,26 +8,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
 
     //web driver
     //web element
 
-    public WebDriver Driver;
 
     @Test
     public void metodaLogin(){
 
         //Setam driverul de chrome
-        System.setProperty("webdriver.chrome.driver","C:\\Automation\\chromedriver.exe");
-        //Deschidem un browser de chrome
-        Driver=new ChromeDriver();
-        //Accesam un URL
-        Driver.get("http://demo.automationtesting.in/Index.html");
+//        System.setProperty("webdriver.chrome.driver","C:\\Automation\\chromedriver.exe");
+//        //Deschidem un browser de chrome
+//        Driver=new ChromeDriver();
+//        //Accesam un URL
+//        Driver.get("http://demo.automationtesting.in/Index.html");
 
         //Maximize page
 
-        Driver.manage().window().maximize();
+        /*Driver.manage().window().maximize();*/
 
         //Identificam butonul "Sign In".. din inspect si luam ID-ul
 
