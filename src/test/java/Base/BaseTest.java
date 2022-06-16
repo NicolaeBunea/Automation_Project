@@ -19,8 +19,8 @@ public class BaseTest {
     }
 
 
-    @After
+    /*@After
     public void cleaner(){
         Driver.quit();
-    }
+    }*/
 }
