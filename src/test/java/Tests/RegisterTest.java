@@ -1,12 +1,10 @@
 package Tests;
 
 import Base.BaseTest;
+import HelpMethods.ElementMethods;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -14,12 +12,13 @@ import java.util.List;
 
 public class RegisterTest extends BaseTest {
 
-
-
     @Test
     public void registerTest(){
+
+        ElementMethods elementMethods=new ElementMethods(Driver);
+
         WebElement skipSignIn= Driver.findElement(By.id("btn2"));
-        skipSignIn.click();
+        elementMethods.clickElement(skipSignIn);
 
         String expectedPage="Register";
         String actualPage=Driver.getTitle();
@@ -27,7 +26,7 @@ public class RegisterTest extends BaseTest {
 
         WebElement firsNameElement= Driver.findElement(By.xpath("//input[@ng-model='FirstName']"));
         String nameValue="Bunea";
-        firsNameElement.sendKeys(nameValue);
+        elementMethods.fillElement(firsNameElement,nameValue);
 
         WebElement lastNameElement= Driver.findElement(By.xpath("//input[@ng-model='LastName']"));
         String lastValue="Nicolae";
@@ -72,6 +71,43 @@ public class RegisterTest extends BaseTest {
         }
 
         genderElement.click();
+
+        WebElement countryElement =Driver.findElement(By.xpath("//span[@role='combobox']"));
+        countryElement.click();
+
+        WebElement m= Driver.findElement(By.xpath("//input[@role='textbox']"));
+        m.sendKeys("Denmark");
+        m.sendKeys(Keys.ENTER);
+
+
+        WebElement yearElement = Driver.findElement(By.id("yearbox"));
+        Select yaerDropown = new Select(yearElement);
+        yaerDropown.selectByValue("1990");
+
+        WebElement monthElement = Driver.findElement(By.xpath("//select[@ng-model='monthbox']"));
+        elementMethods.selectTextElement(monthElement,"October");
+        /*Select monthDropown = new Select(monthElement);
+        monthDropown.selectByVisibleText("October");*/
+
+        WebElement dayElement = Driver.findElement(By.id("daybox"));
+        elementMethods.selectValueElement(dayElement,"19");
+        /*Select dayDropown = new Select(dayElement);
+        dayDropown.selectByValue("19");*/
+
+
+        WebElement passwordElement=Driver.findElement(By.id("firstpassword"));
+        String passwordValue="1234567890";
+        passwordElement.sendKeys(passwordValue);
+
+
+        WebElement confirmPasswordElement=Driver.findElement(By.id("secondpassword"));
+        String confirmPasswordValue="1234567890";
+        confirmPasswordElement.sendKeys(confirmPasswordValue);
+
+
+
+        WebElement uploudElement=Driver.findElement(By.id("imagesrc"));
+        uploudElement.sendKeys("D:\\Poze\\picisto-20140915160203-943903.jpg");
 
 
 

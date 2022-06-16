@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.BaseTest;
+import HelpMethods.ElementMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -15,6 +16,8 @@ public class AlertTest extends BaseTest {
     @Test
     public void registerTest() {
 
+        ElementMethods elementMethods= new ElementMethods(Driver);
+
         WebElement skipSignInElement = Driver.findElement(By.id("btn2"));
         skipSignInElement.click();
 
@@ -24,8 +27,7 @@ public class AlertTest extends BaseTest {
 
 
         WebElement switchElement = Driver.findElement(By.xpath("//a[text()='SwitchTo']"));
-        Actions action = new Actions(Driver);
-        action.moveToElement(switchElement).build().perform();
+        elementMethods.hoverElement(switchElement);
 
         WebElement alertsElement = Driver.findElement(By.xpath("//a[text()='Alerts']"));
         alertsElement.click();

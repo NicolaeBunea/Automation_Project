@@ -24,7 +24,7 @@ public class WindowTest extends BaseTest {
 
 
         WebElement switchElement = Driver.findElement(By.xpath("//a[text()='SwitchTo']"));
-        Actions action = new Actions(Driver);
+        Actions action = new Actions(Driver); //obiect fac cu mouse orice
         action.moveToElement(switchElement).build().perform();
 
         WebElement windowsElement = Driver.findElement(By.xpath("//a[text()='Windows']"));
