@@ -1,7 +1,9 @@
 package Tests;
 
 import Base.BaseTest;
+import HelpMethods.AlertMethods;
 import HelpMethods.ElementMethods;
+import HelpMethods.PageMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -17,13 +19,14 @@ public class AlertTest extends BaseTest {
     public void registerTest() {
 
         ElementMethods elementMethods= new ElementMethods(Driver);
+        AlertMethods alertMethods= new AlertMethods(Driver);
+        PageMethods pageMethods=new PageMethods(Driver);
 
         WebElement skipSignInElement = Driver.findElement(By.id("btn2"));
         skipSignInElement.click();
 
         String expectedPage = "Register";
-        String actualpage = Driver.getTitle();
-        Assert.assertTrue("The expected page was notDisplayed", expectedPage.equals(actualpage));
+        pageMethods.validateTitlePage(expectedPage);
 
 
         WebElement switchElement = Driver.findElement(By.xpath("//a[text()='SwitchTo']"));
@@ -31,39 +34,33 @@ public class AlertTest extends BaseTest {
 
         WebElement alertsElement = Driver.findElement(By.xpath("//a[text()='Alerts']"));
         alertsElement.click();
-        Driver.navigate().to("http://demo.automationtesting.in/Alerts.html");
+        pageMethods.navigateToURL("http://demo.automationtesting.in/Alerts.html");
 
         List<WebElement> alertButtons=Driver.findElements(By.cssSelector(".analystic"));
         alertButtons.get(0).click();
         WebElement alertOkElement=Driver.findElement(By.cssSelector("button[onclick='alertbox()']"));
         alertOkElement.click();
-        Alert simpleAlert= Driver.switchTo().alert();
-        simpleAlert.accept();
+        alertMethods.acceptAlert();
 
         alertButtons.get(1).click();
         WebElement alertCancelElement=Driver.findElement(By.cssSelector("button[class='btn btn-primary']"));
         alertCancelElement.click();
-        Alert cancelAlert=Driver.switchTo().alert();
-        cancelAlert.dismiss();
+        alertMethods.cancelAlert();
 
         WebElement messageValidElement=Driver.findElement(By.id("demo"));
         String expectedMess="You Pressed Cancel";
-        String actualMess=messageValidElement.getText();
-        Assert.assertEquals("The expected message was not displayed",expectedMess,actualMess);
+        elementMethods.validateElementText(messageValidElement,expectedMess);
 
 
         alertButtons.get(2).click();
         WebElement alertaTextElement= Driver.findElement(By.cssSelector("button[class='btn btn-info']"));
         alertaTextElement.click();
-        Alert textAlert=Driver.switchTo().alert();
         String alertValue="Nicu";
-        textAlert.sendKeys(alertValue);
-        textAlert.accept();
+        alertMethods.fillAcceptAlert(alertValue);
 
         WebElement textBoxElement= Driver.findElement(By.id("demo1"));
         String expectValue="Hello "+alertValue+" How are you today";
-        String actualValue=textBoxElement.getText();
-        Assert.assertEquals(expectValue,actualValue);
+        elementMethods.validateElementText(textBoxElement,expectValue);
 
 
         /*String butonAlertValue="Alert with Textbox ";

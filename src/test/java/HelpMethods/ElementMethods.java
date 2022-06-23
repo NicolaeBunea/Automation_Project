@@ -1,5 +1,6 @@
 package HelpMethods;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -34,6 +35,11 @@ public class ElementMethods {
     public void hoverElement(WebElement element){
         Actions action = new Actions(Driver);
         action.moveToElement(element).build().perform();
+    }
+
+    public void validateElementText(WebElement element,String value){
+        String actualValue=element.getText();
+        Assert.assertEquals("Text message is not correct!",value,actualValue);
     }
 
 }
