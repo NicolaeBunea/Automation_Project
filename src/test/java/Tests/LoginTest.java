@@ -1,12 +1,16 @@
 package Tests;
 
 import Base.BaseTest;
+import HelpMethods.ElementMethods;
+import HelpMethods.PageMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.IndexPage;
+import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
@@ -16,6 +20,10 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void metodaLogin(){
+
+
+        IndexPage indexPage = new IndexPage(Driver);
+        indexPage.clickSignIn();
 
         //Setam driverul de chrome
 //        System.setProperty("webdriver.chrome.driver","C:\\Automation\\chromedriver.exe");
@@ -34,50 +42,10 @@ public class LoginTest extends BaseTest {
         //XPATH si CSS
         //XPATH=> //input[@placeholder='E mail']
 
-        WebElement signInElement= Driver.findElement(By.id("btn1"));
-        signInElement.click();
-
         //Validam pagina de login
 
-        String expectedPage="SignIn";
-        String actualPage= Driver.getTitle();
-        Assert.assertEquals("The expected page was not displayed",expectedPage,actualPage);
-
-        //Identificam butonul de email
-
-        WebElement emailElement= Driver.findElement(By.xpath("//input[@placeholder='E mail']"));
-        String emailValue="abc@yahoo.com";
-        emailElement.sendKeys(emailValue);
-
-        //Identificam butonul password
-
-        WebElement passElement= Driver.findElement(By.xpath("//input[@placeholder='Password']"));
-        String passValue="Parola123";
-        passElement.sendKeys(passValue);
-
-        //Click pe enter
-
-        WebElement enterElement= Driver.findElement(By.id("enterbtn"));
-        enterElement.click();
-
-        //Validam mesaj de eroare
-
-        WebElement mesageElement= Driver.findElement(By.id("errormsg"));
-        String expectedError= "Invalid User Name or PassWord";
-        String actualError= mesageElement.getText();
-        Assert.assertEquals("Text of the error displayed is not correct",expectedError,actualError);
-
-        //Inchidem paginile
-
-        /*Driver.close();*/
-        Driver.quit();
-
-        //Dif intre close si quit: "close" inchide cate un tab iar "quit" browserul
-
-
-
-
-
+        LoginPage loginPage = new LoginPage(Driver);
+        loginPage.loginInvalidProcess("SignIn","email@proba.com","Proba123#","Invalid User Name or PassWord");
 
     }
 

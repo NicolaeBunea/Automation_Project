@@ -2,6 +2,7 @@ package Tests;
 
 import Base.BaseTest;
 import HelpMethods.ElementMethods;
+import HelpMethods.PageMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -16,13 +17,13 @@ public class RegisterTest extends BaseTest {
     public void registerTest(){
 
         ElementMethods elementMethods=new ElementMethods(Driver);
+        PageMethods pageMethods=new PageMethods(Driver);
 
         WebElement skipSignIn= Driver.findElement(By.id("btn2"));
         elementMethods.clickElement(skipSignIn);
 
         String expectedPage="Register";
-        String actualPage=Driver.getTitle();
-        Assert.assertTrue("The expected page was not displayed",expectedPage.equals(actualPage));
+        pageMethods.validateTitlePage(expectedPage);
 
         WebElement firsNameElement= Driver.findElement(By.xpath("//input[@ng-model='FirstName']"));
         String nameValue="Bunea";
@@ -54,8 +55,7 @@ public class RegisterTest extends BaseTest {
         Select skillsDropdown= new Select(skillsElement);
         skillsDropdown.selectByVisibleText("APIs");
 
-        JavascriptExecutor js = (JavascriptExecutor) Driver;
-        js.executeScript("window.scrollBy(0,250)", "");
+        pageMethods.scrollDownPage(250);
 
         WebElement languageElement= Driver.findElement(By.id("msdd"));
         languageElement.click();
@@ -107,7 +107,7 @@ public class RegisterTest extends BaseTest {
 
 
         WebElement uploudElement=Driver.findElement(By.id("imagesrc"));
-        uploudElement.sendKeys("D:\\Poze\\picisto-20140915160203-943903.jpg");
+        uploudElement.sendKeys("C:\\Users\\nicol\\Desktop\\Capture.JPG");
 
 
 
