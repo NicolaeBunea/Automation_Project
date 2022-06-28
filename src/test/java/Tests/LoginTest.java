@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
     public void metodaLogin(){
 
 
-        IndexPage indexPage = new IndexPage(Driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSignIn();
 
         //Setam driverul de chrome
@@ -44,7 +44,7 @@ public class LoginTest extends BaseTest {
 
         //Validam pagina de login
 
-        LoginPage loginPage = new LoginPage(Driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.loginInvalidProcess("SignIn","email@proba.com","Proba123#","Invalid User Name or PassWord");
 
     }

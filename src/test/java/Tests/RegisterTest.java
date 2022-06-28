@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RegisterTest extends BaseTest {
 
-    @Test
+   /* @Test
     public void registerTest(){
 
         ElementMethods elementMethods=new ElementMethods(Driver);
@@ -86,13 +86,13 @@ public class RegisterTest extends BaseTest {
 
         WebElement monthElement = Driver.findElement(By.xpath("//select[@ng-model='monthbox']"));
         elementMethods.selectTextElement(monthElement,"October");
-        /*Select monthDropown = new Select(monthElement);
-        monthDropown.selectByVisibleText("October");*/
+        Select monthDropown = new Select(monthElement);
+        monthDropown.selectByVisibleText("October");
 
         WebElement dayElement = Driver.findElement(By.id("daybox"));
         elementMethods.selectValueElement(dayElement,"19");
-        /*Select dayDropown = new Select(dayElement);
-        dayDropown.selectByValue("19");*/
+        Select dayDropown = new Select(dayElement);
+        dayDropown.selectByValue("19");
 
 
         WebElement passwordElement=Driver.findElement(By.id("firstpassword"));
@@ -117,5 +117,5 @@ public class RegisterTest extends BaseTest {
 
 
 
-    }
+    }*/
 }

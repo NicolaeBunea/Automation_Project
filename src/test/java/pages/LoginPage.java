@@ -7,27 +7,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    public WebDriver driver;
-    public ElementMethods elementMethods;
-    public PageMethods pageMethods;
-
+public class LoginPage extends BasePage{
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        elementMethods = new ElementMethods(this.driver);
-        pageMethods = new PageMethods(this.driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
+
     }
 
     @FindBy(xpath = "//input[@placeholder='E mail']")
-    public WebElement emailElement;
+    private WebElement emailElement;
     @FindBy(xpath = "//input[@placeholder='Password']")
-    public WebElement passwordElement;
+    private WebElement passwordElement;
     @FindBy(id = "enterbtn")
-    public WebElement enterElement;
+    private WebElement enterElement;
     @FindBy(id = "errormsg")
-    public WebElement errorMessageElement;
+    private WebElement errorMessageElement;
 
     public void loginInvalidProcess(String page, String email, String password, String error){
         pageMethods.validateTitlePage(page);
